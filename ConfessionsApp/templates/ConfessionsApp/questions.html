@@ -1,0 +1,57 @@
+{%extends 'ConfessionsApp/base.html'%}
+{% load bootstrap_icons %}
+
+  
+{%block content%}
+
+
+<div class="container mt-5 mb-3">
+  <form class="text-center mx-5" method="POST">
+    {%csrf_token%}
+    {%if user.is_authenticated%}
+    <input class="form-control mb-2" type="text"   
+      name="QuestionInput" placeholder="Ask a question!"
+      />
+    <input class="btn btn-outline-success mt-2 mb-4" type="submit" value="Ask!" />
+
+    {%else%}
+    <input class="form-control mb-2" type="text"   
+      name="QuestionInput" placeholder="Login or Sign Up to ask a Question!"
+      disabled
+    />
+    <input class="btn btn-outline-success mt-2 mb-4" type="submit" value="Ask!" disabled/>
+    {%endif%}
+  </form>
+
+  <div class="list-group">
+    {%for Question in Questions%}
+    {% comment %} <div class="container"><a href="">{% bs_icon 'trash' color='red' %}</a></div> {% endcomment %}
+    <a href="{%url 'ConfessionsApp:question' Question.id%}" class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{Question.question_text}}</h5>
+        <small>{{Question.num_days_ago}} days ago</small>
+      </div>
+      <p class="mb-1">
+        {%if Question.num_likes != 1 %}
+          {{Question.num_likes}} likes
+        {%else%}
+          {{Question.num_likes}} like
+        {%endif%}
+        
+        {%if Question.num_posts != 1 %}
+          {{Question.num_posts}} posts
+        {%else%}
+          {{Question.num_posts}} post
+        {%endif%}
+      </p>
+      <small>{{Question.date}}</small> 
+      
+    </a>
+    
+    {%endfor%}
+  </div>
+  
+</div>
+
+
+{%endblock content%}

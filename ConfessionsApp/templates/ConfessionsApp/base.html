@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Confessions App</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {%load bootstrap5%}
+        {%bootstrap_css%}
+        {%bootstrap_javascript%}
+        
+        
+        {%block custom_styles%} {%endblock custom_styles%}
+        {%block custom_js%} {%endblock custom_js%}
+    </head>
+    <body class="d-flex flex-column min-vh-100 bg-light">
+        {%include 'ConfessionsApp/nav.html'%}
+        
+        <main>
+            <div class="">
+                
+                {%block content%}
+                
+                {%endblock content%}
+            </div>
+        </main>
+
+        {%include 'ConfessionsApp/footer.html'%}
+        
+    </body>
+</html>
