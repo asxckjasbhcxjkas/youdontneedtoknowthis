@@ -16,7 +16,7 @@
 
     {%else%}
     <input class="form-control mb-2" type="text"   
-      name="QuestionInput" placeholder="Login or Sign Up to ask a Question!"
+      name="QuestionInput" placeholder="Login to ask a Question!"
       disabled
     />
     <input class="btn btn-outline-success mt-2 mb-4" type="submit" value="Ask!" disabled/>
@@ -25,7 +25,6 @@
 
   <div class="list-group">
     {%for Question in Questions%}
-    {% comment %} <div class="container"><a href="">{% bs_icon 'trash' color='red' %}</a></div> {% endcomment %}
     <a href="{%url 'ConfessionsApp:question' Question.id%}" class="list-group-item list-group-item-action">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1">{{Question.question_text}}</h5>
