@@ -1,16 +1,14 @@
 {%extends 'ConfessionsApp/base.html'%}
 {%load static%}
-{% comment %} {%load bootstrap5%} {% endcomment %}
-{% comment %} {%bootstrap_css%} {% endcomment %}
-{% comment %} {%bootstrap_javascript%} {% endcomment %}
 {% load crispy_forms_tags %}
-
-
 
 {%block custom_styles%}
   <link rel="stylesheet" href="{%static 'css/login.css'%}">
 {%endblock custom_styles%}
 
+{%block custom_js%}
+  <script type="text/javascript" src="{%static 'js/toast.js'%}" defer></script>
+{%endblock custom_js%}
 
 {%block content%}
 
@@ -26,13 +24,28 @@
     <p>Please login to see this page.</p>
     {% endif %}
 {% endif %}
+  <!-- Flexbox container for aligning the toasts -->
+  <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
 
-
+    <!-- Then put toasts within -->
+    <div id="toastDiv" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        {% comment %} <img src="..." class="rounded me-2" alt="..."> {% endcomment %}
+        <strong class="me-auto">Ed</strong>
+        <small>now</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Hi, try username Tester and password OceanIce
+      </div>
+    </div>
+  </div>
+</div>
 
 <section class="vh-100 gradient-custom">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <div id="loginCard" class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card bg-dark text-white" style="border-radius: 1rem;">
           <div class="card-body p-5 text-center">
 
@@ -49,12 +62,10 @@
                 <input type="hidden" name="next" value="{%url 'ConfessionsApp:index'%}"/>
               </form>
             </div>
-
             <div>
               <p class="mb-0">Don't have an account? <a href="{%url 'Users:signup'%}" class="text-white-50 fw-bold">Sign Up</a>
               </p>
             </div>
-
           </div>
         </div>
       </div>
