@@ -1,6 +1,10 @@
 {%extends 'ConfessionsApp/base.html'%}
 {% load bootstrap_icons %}
+{%load static%}
 
+{%block custom_js%} 
+  <script type="text/javascript" src="{%static 'js/submit.js'%}"></script>
+{%endblock custom_js%}
   
 {%block content%}
 
@@ -12,14 +16,14 @@
     <input class="form-control mb-2" type="text"   
       name="QuestionInput" placeholder="Ask a question!"
       />
-    <input class="btn btn-outline-success mt-2 mb-4" type="submit" value="Ask!" />
+    <input id="submitBtn" class="btn btn-outline-success mt-2 mb-4" type="submit" value="Ask!" />
 
     {%else%}
     <input class="form-control mb-2" type="text"   
       name="QuestionInput" placeholder="Login to ask a Question!"
       disabled
     />
-    <input class="btn btn-outline-success mt-2 mb-4" type="submit" value="Ask!" disabled/>
+    <input id="submitBtn" class="btn btn-outline-success mt-2 mb-4" type="submit" value="Ask!" disabled/>
     {%endif%}
   </form>
 

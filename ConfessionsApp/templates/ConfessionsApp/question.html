@@ -1,11 +1,46 @@
 {%extends 'ConfessionsApp/base.html'%}
 
 {%load bootstrap_icons%}
+{%load static%}
 
+{%block custom_js%} 
+  <script type="text/javascript" src="{%static 'js/submit.js'%}"></script>
+{%endblock custom_js%}
 {%block content%}
+<div class="ms-3">
+  <a href="{%url 'ConfessionsApp:questions'%}" class="btn btn-outline-primary">Back to questions</a>
+</div>
 
-  {% comment %} {{Question.question_text}} {% endcomment %}
 
-  <div class="container"><a href="">{% bs_icon 'trash' color='red' %}</a></div>
+<div class="container text-center">
+  <h1>{{Question.question_text}}</h1>
+</div>
 
-  {%endblock content%}
+<div class="container my-5">
+  <form method="POST" class="text-center my-4">
+    {%csrf_token%}
+    {%if user.is_authenticated%}
+    <textarea name="post-input" cols="10" rows="10" class="form-control" placeholder="Add a comment..."></textarea>
+    <input type="submit" id="submitBtn" class="btn btn-outline-success mt-2">
+    {%else%}
+    <textarea name="post-input" cols="10" rows="10" class="form-control" placeholder="Login or Sign up!" disabled></textarea>
+    <input type="submit" id="submitBtn" class="btn btn-outline-success mt-2" disabled>
+    {%endif%}
+  </form>
+
+
+  <div class="list-group">
+    {% for post in Question.posts %}
+    <a href="#" class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{post.post_text}}</h5>
+        <small>{{post.num_likes}} likes</small>
+      </div>
+      <p class="mb-1">{{post.answer_text}}</p>
+      <small>{{post.date}}</small>
+    </a>
+    {% endfor %}
+  </div>
+
+
+{%endblock content%}

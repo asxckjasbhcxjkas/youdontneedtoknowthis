@@ -1,5 +1,8 @@
 {%extends 'ConfessionsApp/base.html'%}
 {%load static%}
+{% comment %} {%load bootstrap5%}
+{%bootstrap_css%}
+{%bootstrap_javascript%} {% endcomment %}
 {%load crispy_forms_tags%}
 {%block custom_styles%}
   <link rel="stylesheet" href="{%static 'css/login.css'%}">
@@ -18,9 +21,12 @@
               <form method="POST">
                 {%csrf_token%}
                 {{ form|crispy }}
-                <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
               <input class="btn btn-outline-light btn-lg px-5" type="submit" value="Sign Up!">
             </form>
+            </div>
+            <div>
+              <p class="mb-0">Have an account? <a href="{%url 'Users:login'%}" class="text-white-50 fw-bold">Log In</a>
+              </p>
             </div>
           </div>
         </div>

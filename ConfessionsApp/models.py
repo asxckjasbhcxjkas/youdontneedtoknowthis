@@ -39,6 +39,10 @@ class Question(models.Model):
     def num_posts(self):
         return self.post_set.count()
 
+    @property
+    def posts(self):
+        return self.post_set.all()
+
 class Post(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
