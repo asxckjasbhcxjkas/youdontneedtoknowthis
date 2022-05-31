@@ -26,9 +26,10 @@
     <input id="submitBtn" class="btn btn-outline-success mt-2 mb-4" type="submit" value="Ask!" disabled/>
     {%endif%}
   </form>
-
+  <a href="?page={{page_obj.number}}&SortBy=Newest">Newest</a>
+  <a href="?page={{page_obj.number}}&SortBy=Oldest">Oldest</a>
   <div class="list-group">
-    {%for Question in Questions%}
+    {%for Question in page_obj%}
     <a href="{%url 'ConfessionsApp:question' Question.id%}" class="list-group-item list-group-item-action">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1">{{Question.question_text}}</h5>
@@ -55,6 +56,37 @@
   </div>
   
 </div>
-
+<div class="container">
+<ul class="pagination my-3">
+  {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page=1">&laquo; first</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}&SortBy={{SortBy}}">previous</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}&SortBy={{SortBy}}">{{ page_obj.previous_page_number }}</a>
+      </li>
+  {% endif %}
+  <li class="page-item active" aria-current="page">
+    <a class="page-link" href="#" >{{page_obj.number}}</a>
+  </li>
+  {% if page_obj.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.next_page_number }}&SortBy={{SortBy}}">{{ page_obj.next_page_number }}</a>
+    </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}&SortBy={{SortBy}}">next</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}&SortBy={{SortBy}}">last &raquo;</a>
+      </li>
+  {% endif %}
+</ul>
+<span class="current">
+Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+</span>
+</div>
 
 {%endblock content%}

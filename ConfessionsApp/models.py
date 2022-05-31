@@ -74,16 +74,13 @@ class PostComment(models.Model):
         today= timezone.now()
         return (today - self.date).days
 
-class Like(models.Model):
-    owner = models.ForeignKey(User,on_delete=models.CASCADE)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True, blank=True)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True, blank=True)
-    post_comment = models.ForeignKey(PostComment, on_delete=models.CASCADE, null=True, blank=True)
-
 class Confession(models.Model):
     body = models.CharField(max_length=666)
     date = models.DateTimeField(auto_now=True)
     owner=models.ForeignKey(User, on_delete=models.CASCADE)
+
+    # likes = models.ManyToManyField(User, null=True, blank=True)
+
     def __str__(self):
         return self.body[:20]
     
@@ -91,3 +88,14 @@ class Confession(models.Model):
     def num_days_ago(self):
         today= timezone.now()
         return (today - self.date).days
+    
+    @property
+    def num_likes(self):
+        return self.like_set.count()
+
+class Like(models.Model):
+    owner = models.ForeignKey(User,on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, null=True, blank=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True, blank=True)
+    post_comment = models.ForeignKey(PostComment, on_delete=models.CASCADE, null=True, blank=True)
+    confession = models.ForeignKey(Confession, on_delete=models.CASCADE, null=True, blank=True)

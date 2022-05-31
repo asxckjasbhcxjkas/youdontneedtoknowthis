@@ -1,5 +1,7 @@
 {%extends 'ConfessionsApp/base.html'%}
 
+
+{%load bootstrap_icons%}
 {%load static%}
 {%block custom_js%} 
   <script type="text/javascript" src="{%static 'js/submit.js'%}"></script>
@@ -38,6 +40,15 @@
             {%else%}
             ({{Confession.num_days_ago}} day ago)
             {%endif%}
+          </span>
+          <span class="card-text mx-3">
+            <a class="btn btn-primary" href="{%url 'ConfessionsApp:likeconfession' Confession.id%}">
+              Like {%bs_icon 'heart'%}
+            </a>
+            <a  class="btn btn-primary" href="#">
+              Unlike {%bs_icon 'heart-fill'%}
+            </a>
+            {{Confession.num_likes}}
           </span>
         </div>
       </div>
