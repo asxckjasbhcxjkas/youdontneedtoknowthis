@@ -1,0 +1,17 @@
+{%extends 'ConfessionsApp/base.html'%}
+
+{%block content %}
+<h1 class="text-center">Edit your confession</h1>
+
+<div class="container my-5 text-center">
+  <form class="mx-5" method="POST">
+    {%csrf_token%}
+    
+    <label for="confessionText">Confession Text:</label>
+    <input class="form-control mb-2" type="text" value={{confession.body}} 
+        placeholder="Edit your confession" name="confessionText">
+    <input class="btn btn-outline-success" type="submit" value="Save">
+
+  </form>
+  </div>
+{%endblock content%}

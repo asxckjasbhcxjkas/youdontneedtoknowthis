@@ -1,0 +1,29 @@
+{%extends 'ConfessionsApp/base.html'%}
+
+
+{%block content%}
+
+<h1 class="text-center">My Questions</h1>
+<div class="container mt-4">
+  {%for question in questions%}
+    <div class="card mt-2 mb-2">
+        <span class="card-body">{{question.question_text}}</span>
+        <span class="card-body">
+          <a href="{%url 'ConfessionsApp:question' question.id%}">Click to view</a>
+        </span>
+          <div class="card-footer py-1 submission-footer text-muted">
+          <span class="card-text">
+            {{question.date}}
+            {%if question.num_days_ago != 1%}
+              ({{question.num_days_ago}} days ago)
+            {%else%}
+            ({{question.num_days_ago}} day ago)
+            {%endif%}
+            {% comment %} {%bs_icon 'heart'%} {{Confession.num_likes}} likes  {% endcomment %}
+          </span>
+        </div>
+      </div>
+  {%empty%}
+  <p>You have posted no questions</p>
+  {%endfor%}
+{%endblock content%}

@@ -33,7 +33,7 @@
       <div class="card mt-2 mb-2">
         <span class="card-body">{{Confession.body}}</span>
         <div class="card-footer py-1 submission-footer text-muted">
-          <span class="card-text">
+          <span class="card-text me-5">
             {{Confession.date}}
             {%if Confession.num_days_ago != 1%}
               ({{Confession.num_days_ago}} days ago)
@@ -41,15 +41,33 @@
             ({{Confession.num_days_ago}} day ago)
             {%endif%}
           </span>
-          <span class="card-text mx-3">
-            <a class="btn btn-primary" href="{%url 'ConfessionsApp:likeconfession' Confession.id%}">
-              Like {%bs_icon 'heart'%}
-            </a>
-            <a  class="btn btn-primary" href="#">
-              Unlike {%bs_icon 'heart-fill'%}
-            </a>
-            {{Confession.num_likes}}
-          </span>
+          <div class="fluid-container ml-0">
+            {% comment %} <span class="card-text me-5">
+              <a class="btn btn-primary" href="{%url 'ConfessionsApp:likeconfession' Confession.id%}">
+                Like {%bs_icon 'heart'%}
+              </a>
+              <a class="btn btn-primary" href="#">
+                Unlike {%bs_icon 'heart-fill'%}
+              </a>
+              {{Confession.num_likes}}
+            </span> {% endcomment %}
+            
+
+            {%if request.user == Confession.owner%}            
+            <span class="card-text">
+              <a href="{%url 'ConfessionsApp:deleteconfession' Confession.id%}" class="btn btn-danger"  title="Delete Confession">
+                Delete {%bs_icon 'trash' color='white'%}
+              </a>
+            </span>
+            <span class="card-text">
+              {% comment %} {%url 'ConfessionsApp:editconfession' Confession.id%} {% endcomment %}
+              <a href="{%url 'ConfessionsApp:editconfession' Confession.id%}" class="btn btn-success"  title="Delete Confession">
+                Edit {%bs_icon 'pencil-square' color='white'%}
+              </a>
+            </span>
+            {%endif%}
+          </div>
+          
         </div>
       </div>
     {%endfor%}

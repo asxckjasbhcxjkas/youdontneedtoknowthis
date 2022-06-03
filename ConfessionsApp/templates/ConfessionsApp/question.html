@@ -31,14 +31,13 @@
 
   <div class="list-group">
     {% for post in Question.posts %}
-    <a href="#" class="list-group-item list-group-item-action">
+    <span class="list-group-item list-group-item-action">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1">{{post.post_text}}</h5>
-        <small>{{post.num_likes}} likes</small>
       </div>
       <p class="mb-1">{{post.answer_text}}</p>
       <small>{{post.date}}</small>
-    </a>
+    </span>
     {% endfor %}
   </div>
 

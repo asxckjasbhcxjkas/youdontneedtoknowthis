@@ -60,20 +60,6 @@ class Post(models.Model):
         today= timezone.now()
         return (today - self.date).days
 
-class PostComment(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    comment_text = models.CharField(max_length=255)
-    date = models.DateTimeField(auto_now=True)
-    
-    def __str__(self):
-        return self.comment_text[:10]
-    
-    @property
-    def num_days_ago(self):
-        today= timezone.now()
-        return (today - self.date).days
-
 class Confession(models.Model):
     body = models.CharField(max_length=666)
     date = models.DateTimeField(auto_now=True)
@@ -92,6 +78,22 @@ class Confession(models.Model):
     @property
     def num_likes(self):
         return self.like_set.count()
+
+class PostComment(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    comment_text = models.CharField(max_length=255)
+    date = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.comment_text[:10]
+    
+    @property
+    def num_days_ago(self):
+        today= timezone.now()
+        return (today - self.date).days
+
+
 
 class Like(models.Model):
     owner = models.ForeignKey(User,on_delete=models.CASCADE)

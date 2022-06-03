@@ -1,0 +1,27 @@
+{%extends 'ConfessionsApp/base.html'%}
+
+{%block content%}
+  {%load bootstrap_icons%}
+
+  <h1 class="text-center">My Confessions</h1>
+  <div class="container mt-4">
+  {%for Confession in confessions%}
+      <div class="card mt-2 mb-2">
+          <span class="card-body">{{Confession.body}}</span>
+          <div class="card-footer py-1 submission-footer text-muted">
+            <span class="card-text">
+              {{Confession.date}}
+              {%if Confession.num_days_ago != 1%}
+                ({{Confession.num_days_ago}} days ago)
+              {%else%}
+              ({{Confession.num_days_ago}} day ago)
+              {%endif%}
+              {% comment %} {%bs_icon 'heart'%} {{Confession.num_likes}} likes  {% endcomment %}
+            </span>
+          </div>
+        </div>
+    {%empty%}
+      <p>You have posted no confessions</p>
+    {%endfor%}
+  </div>
+{%endblock content%}

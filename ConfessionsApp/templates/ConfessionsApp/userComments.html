@@ -1,0 +1,25 @@
+{%extends 'ConfessionsApp/base.html'%}
+{%block content%}
+  <h1 class="text-center">My Comments</h1>
+  <div class="container">
+  {%for comment in comments%}
+  <div class="card mt-2 mb-2">
+    <span class="card-body">{{comment.post_text}}</span>
+    <span class="card-body">
+      Response to question: <a href="{%url 'ConfessionsApp:question' comment.question.id%}">{{comment.question.question_text}}</a>
+    </span>
+      <div class="card-footer py-1 submission-footer text-muted">
+      <span class="card-text">
+        {{question.date}}
+        {%if comment.num_days_ago != 1%}
+          ({{comment.num_days_ago}} days ago)
+        {%else%}
+        ({{comment.num_days_ago}} day ago)
+        {%endif%}
+      </span>
+    </div>
+  </div>
+  {%empty%}
+  <p>You have posted no comments</p>
+  {%endfor%}
+{%endblock content%}

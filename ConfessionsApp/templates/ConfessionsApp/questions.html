@@ -35,7 +35,7 @@
         <h5 class="mb-1">{{Question.question_text}}</h5>
         <small>{{Question.num_days_ago}} days ago</small>
       </div>
-      <p class="mb-1">
+      {% comment %} <p class="mb-1">
         {%if Question.num_likes != 1 %}
           {{Question.num_likes}} likes
         {%else%}
@@ -47,7 +47,7 @@
         {%else%}
           {{Question.num_posts}} post
         {%endif%}
-      </p>
+      </p> {% endcomment %}
       <small>{{Question.date}}</small> 
       
     </a>
