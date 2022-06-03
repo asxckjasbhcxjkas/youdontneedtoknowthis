@@ -14,10 +14,14 @@ class Question(models.Model):
         ('SCHL', 'School'),
         ('SPRTS', 'Sports'),
     ]
+
     category = models.CharField(max_length=10, choices=CATEGORIES) 
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     question_text = models.CharField(max_length=255)
-    date = models.DateTimeField(auto_now=True)
+    body = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+    edited = models.BooleanField(default=False)
+    edited_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         text_len = len(self.question_text)
@@ -62,9 +66,10 @@ class Post(models.Model):
 
 class Confession(models.Model):
     body = models.CharField(max_length=666)
-    date = models.DateTimeField(auto_now=True)
-    owner=models.ForeignKey(User, on_delete=models.CASCADE)
-
+    date = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    edited = models.BooleanField(default=False)
+    edited_date = models.DateTimeField(auto_now=True, blank=True, null=True)
     # likes = models.ManyToManyField(User, null=True, blank=True)
 
     def __str__(self):
@@ -92,8 +97,6 @@ class PostComment(models.Model):
     def num_days_ago(self):
         today= timezone.now()
         return (today - self.date).days
-
-
 
 class Like(models.Model):
     owner = models.ForeignKey(User,on_delete=models.CASCADE)

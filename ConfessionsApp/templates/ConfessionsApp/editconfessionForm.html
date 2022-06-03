@@ -8,7 +8,7 @@
     {%csrf_token%}
     
     <label for="confessionText">Confession Text:</label>
-    <input class="form-control mb-2" type="text" value={{confession.body}} 
+    <input class="form-control mb-2" type="text" value="{{confession.body}}"
         placeholder="Edit your confession" name="confessionText">
     <input class="btn btn-outline-success" type="submit" value="Save">
 

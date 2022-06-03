@@ -40,6 +40,10 @@
             {%else%}
             ({{Confession.num_days_ago}} day ago)
             {%endif%}
+            
+            {%if Confession.edited%}
+            (<i>edited {{Confession.edited_date}}</i>)
+            {%endif%}
           </span>
           <div class="fluid-container ml-0">
             {% comment %} <span class="card-text me-5">

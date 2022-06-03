@@ -1,21 +1,39 @@
-from contextlib import ContextDecorator
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Question, Post, PostComment, Like, Confession
-from django.db.models import Count
+from .models import Question, Post, Like, Confession
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+
+'''
+Helper functions
+'''
 
 def checkOwnershipConfession(user, confession):
     return confession.owner == user
 
-# def checkOwnershipQuestion(user, confession):
-#     return confession.owner == user
+def checkOwnershipQuestion(user, question):
+    return question.owner == user
+
+'''
+Generic/Static views
+'''
 
 def index(request):
     return render(request, "ConfessionsApp/index.html")
 
 def base(request):
     return render(request, "ConfessionsApp/base.html")
+
+def privacy(request):
+    return render(request, "ConfessionsApp/privacy.html")
+
+def about(request):
+    return render(request, "ConfessionsApp/about.html")
+
+
+'''
+Question Views
+'''
 
 def questions(request):
     if request.method != "POST":
@@ -35,12 +53,48 @@ def questions(request):
             "page_obj" : page_obj,
         })
     else:
-        question = Question.objects.create(question_text=request.POST["QuestionInput"], owner=request.user)
+        question = Question.objects.create(question_text=request.POST["QuestionInput"], 
+                                            body=request.POST["QuestionBodyInput"], 
+                                            owner=request.user)
         Questions = Question.objects.all()
         context = {
             "Questions": Questions,
         }
         return redirect('ConfessionsApp:questions')
+
+def deletequestion(request, q_id):
+
+    question = get_object_or_404(Question, id=q_id)
+    if not checkOwnershipQuestion(request.user, question):
+        return redirect("ConfessionsApp:questions")
+    
+    if question.owner == request.user:
+        question.delete()
+
+    return redirect("ConfessionsApp:questions") 
+
+
+
+def editquestion(request, q_id):
+
+    question = get_object_or_404(Question, id=q_id)
+    if not checkOwnershipQuestion(request.user, question):
+        return redirect("ConfessionsApp:questions")
+    
+    if request.method != "POST":
+        context = {
+            "question" : question,
+        }
+        return render(request, "ConfessionsApp/editQuestion.html", context=context)
+    else:
+
+        question.question_text = request.POST["questionText"]
+        question.body = request.POST["questionBody"]
+
+        question.edited = True
+        question.save()
+        return redirect("ConfessionsApp:question", q_id=q_id)
+
 
 def question(request, q_id):
     if request.method != "POST":
@@ -61,6 +115,11 @@ def question(request, q_id):
         )
         return redirect("ConfessionsApp:question", q_id=q_id)
         
+
+'''
+Confession views
+CRUD
+'''
 
 def confessions(request):
     if request.method != "POST":
@@ -89,21 +148,19 @@ def confessions(request):
         }
         return redirect('ConfessionsApp:confessions')
 
-@login_required
-def likeconfession(request, c_id):
+# @login_required
+# def likeconfession(request, c_id):
 
-    confession = get_object_or_404(Confession, id=c_id)
-    if not checkOwnershipConfession(request.user, confession):
-        return redirect('ConfessionsApp:confessions')
-
-
-    if confession.like_set.filter(owner=request.user, confession=confession).exists():
-        user_like = Like.objects.filter(owner=request.user, confession=confession)[0]
-        confession.like_set.remove(user_like)
-    else:
-        Like.objects.create(owner=request.user, confession=confession)
+#     confession = get_object_or_404(Confession, id=c_id)
+#     if not checkOwnershipConfession(request.user, confession):
+#         return redirect('ConfessionsApp:confessions')
+#     if confession.like_set.filter(owner=request.user, confession=confession).exists():
+#         user_like = Like.objects.filter(owner=request.user, confession=confession)[0]
+#         confession.like_set.remove(user_like)
+#     else:
+#         Like.objects.create(owner=request.user, confession=confession)
     
-    return redirect('ConfessionsApp:confessions')
+#     return redirect('ConfessionsApp:confessions')
 
 @login_required
 def deleteconfession(request, c_id):
@@ -122,18 +179,21 @@ def editconfession(request, c_id):
     confession = get_object_or_404(Confession, id=c_id)
     if not checkOwnershipConfession(request.user, confession):
         return redirect('ConfessionsApp:confessions')
-    
     if request.method != "POST":
-        
         context = {
             "confession" : confession
         }
         return render(request, 'ConfessionsApp/editconfessionForm.html', context=context)
     else:
         confession.body = request.POST["confessionText"]
+        confession.edited = True
         confession.save()
         return redirect('ConfessionsApp:confessions')     
 
+
+'''
+Views to get User content
+'''
 @login_required
 def userConfessions(request):
     user = request.user
@@ -160,9 +220,3 @@ def userComments(request):
         'comments' : Comments,
     }
     return render(request, 'ConfessionsApp/userComments.html', context=context)
-
-def privacy(request):
-    return render(request, "ConfessionsApp/privacy.html")
-
-def about(request):
-    return render(request, "ConfessionsApp/about.html")

@@ -14,15 +14,20 @@
     {%csrf_token%}
     {%if user.is_authenticated%}
     <input class="form-control mb-2" type="text"   
-      name="QuestionInput" placeholder="Ask a question!"
+      name="QuestionInput" placeholder="Enter a question title!"
       />
+      <textarea class="form-control mb-2" type="text"   
+      name="QuestionBodyInput" placeholder="Type your question here!"
+      /></textarea>
     <input id="submitBtn" class="btn btn-outline-success mt-2 mb-4" type="submit" value="Ask!" />
-
     {%else%}
     <input class="form-control mb-2" type="text"   
       name="QuestionInput" placeholder="Login to ask a Question!"
       disabled
     />
+    <textarea class="form-control mb-2" type="text"   
+      name="QuestionBodyInput" placeholder="Login to ask a Question!"
+      />
     <input id="submitBtn" class="btn btn-outline-success mt-2 mb-4" type="submit" value="Ask!" disabled/>
     {%endif%}
   </form>
@@ -30,32 +35,20 @@
   <a href="?page={{page_obj.number}}&SortBy=Oldest">Oldest</a>
   <div class="list-group">
     {%for Question in page_obj%}
-    <a href="{%url 'ConfessionsApp:question' Question.id%}" class="list-group-item list-group-item-action">
+    <span  class="list-group-item list-group-item-action">
       <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">{{Question.question_text}}</h5>
+        <h5><a href="{%url 'ConfessionsApp:question' Question.id%}" class="mb-1 text-black" style="text-decoration:none">{{Question.question_text}}</a></h5>
         <small>{{Question.num_days_ago}} days ago</small>
       </div>
-      {% comment %} <p class="mb-1">
-        {%if Question.num_likes != 1 %}
-          {{Question.num_likes}} likes
-        {%else%}
-          {{Question.num_likes}} like
-        {%endif%}
-        
-        {%if Question.num_posts != 1 %}
-          {{Question.num_posts}} posts
-        {%else%}
-          {{Question.num_posts}} post
-        {%endif%}
-      </p> {% endcomment %}
+      <div>
+        <p>{{Question.body}}</p>
+      </div>
       <small>{{Question.date}}</small> 
-      
-    </a>
-    
+    </span>
     {%endfor%}
   </div>
-  
 </div>
+
 <div class="container">
 <ul class="pagination my-3">
   {% if page_obj.has_previous %}
