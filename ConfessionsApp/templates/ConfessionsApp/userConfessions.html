@@ -16,9 +16,23 @@
               {%else%}
               ({{Confession.num_days_ago}} day ago)
               {%endif%}
-              {% comment %} {%bs_icon 'heart'%} {{Confession.num_likes}} likes  {% endcomment %}
             </span>
+            <div class="fluid-container ml-0">
+              {%if request.user == Confession.owner%}            
+              <span class="card-text">
+                <a href="{%url 'ConfessionsApp:deleteconfession' Confession.id%}" class="btn btn-danger"  title="Delete Confession">
+                  Delete {%bs_icon 'trash' color='white'%}
+                </a>
+              </span>
+              <span class="card-text">
+                <a href="{%url 'ConfessionsApp:editconfession' Confession.id%}" class="btn btn-success"  title="Delete Confession">
+                  Edit {%bs_icon 'pencil-square' color='white'%}
+                </a>
+              </span>
+              {%endif%}
+            </div>
           </div>
+          
         </div>
     {%empty%}
       <p>You have posted no confessions</p>

@@ -7,15 +7,18 @@
   <script type="text/javascript" src="{%static 'js/submit.js'%}"></script>
 {%endblock custom_js%}
 {%block content%}
-<div class="ms-3">
+<div class="my-3">
   <a href="{%url 'ConfessionsApp:questions'%}" class="btn btn-outline-primary">Back to questions</a>
 </div>
 
 
 <div class="container text-center">
   <h1>{{Question.question_text}}</h1>
-
   <p>{{Question.body}}</p>
+  {%if request.user == Question.owner%}
+  <a class="btn btn-md btn-success" href="{%url 'ConfessionsApp:editquestion' Question.id%}">Edit Question</a>
+  <a class="btn btn-md btn-success" href="{%url 'ConfessionsApp:deletequestion' Question.id %}">Delete Question</a>
+  {%endif%}
 </div>
 
 <div class="container my-5">
@@ -38,7 +41,16 @@
         <h5 class="mb-1">{{post.post_text}}</h5>
       </div>
       <p class="mb-1">{{post.answer_text}}</p>
-      <small>{{post.date}}</small>
+      <small>
+        {{post.date}}
+        {%if post.edited%}
+            (<i>edited {{post.edited_date}}</i>)
+        {%endif%}
+      </small>
+      {%if request.user == post.owner%}
+        <a href="{%url 'ConfessionsApp:deletecomment' Question.id post.id%}" class="btn btn-outline-danger btn-sm">Delete</a>	
+        <a href="{%url 'ConfessionsApp:editcomment' Question.id post.id%}" class="btn btn-outline-success btn-sm">Edit</a>	
+      {%endif%}
     </span>
     {% endfor %}
   </div>

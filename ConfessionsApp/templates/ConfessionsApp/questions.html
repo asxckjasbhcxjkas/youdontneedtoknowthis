@@ -5,9 +5,7 @@
 {%block custom_js%} 
   <script type="text/javascript" src="{%static 'js/submit.js'%}"></script>
 {%endblock custom_js%}
-  
 {%block content%}
-
 
 <div class="container mt-5 mb-3">
   <form class="text-center mx-5" method="POST">
@@ -45,20 +43,19 @@
         <p>{{Question.body}}</p>
       </div>
     </a>
-    <div class="fluid-container">
+    <div class="fluid-container mb-3">
       <span class="list-group-item bg-light">
       <small class="">{{Question.date}}</small> 
       {%if Question.owner == request.user%}
-        <a href="{%url 'ConfessionsApp:deletequestion' Question.id%}" class="btn btn-danger"  title="Delete Confession">
+        <a href="{%url 'ConfessionsApp:deletequestion' Question.id%}" class="btn btn-danger"  title="Delete Question">
           Delete {%bs_icon 'trash' color='white'%}
         </a>
-        <a href="{%url 'ConfessionsApp:editquestion' Question.id%}" class="btn btn-success"  title="Delete Confession">
+        {% comment %} <a href="{%url 'ConfessionsApp:editquestion' Question.id%}" class="btn btn-success"  title="Delete Confession">
           Edit {%bs_icon 'pencil-square' color='white'%}
-        </a>
+        </a> {% endcomment %}
       {%endif%}
     </span>
     </div>
-
     {%endfor%}
   </div>
 </div>

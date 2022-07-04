@@ -19,6 +19,8 @@ urlpatterns = [
     path("editconfessions/<int:c_id>", views.editconfession, name="editconfession"),
     # path("likeconfession/<int:c_id>", views.likeconfession, name="likeconfession"),
 
+    path("deletecomment/<int:q_id>/<int:cm_id>", views.deletecomment, name="deletecomment"),
+    path("editcomment/<int:q_id>/<int:cm_id>/", views.editcomment, name="editcomment"),
     path("myconfessions", views.userConfessions, name="myconfessions"),
     path("myquestions", views.userQuestions, name="myquestions"),
     path("mycomments", views.userComments, name="mycomments"),

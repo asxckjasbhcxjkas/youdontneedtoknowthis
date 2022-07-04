@@ -7,7 +7,11 @@
 <div class="container mt-4">
   {%for question in questions%}
     <div class="card mt-2 mb-2">
-        <span class="card-body">{{question.question_text}}</span>
+        <div class="card-body">
+          <span>{{question.question_text}}</span>
+          <br>
+          <span>{{question.body}}</span>
+        </div>  
         <span class="card-body">
           <a href="{%url 'ConfessionsApp:question' question.id%}">Click to view</a>
         </span>
@@ -19,7 +23,6 @@
             {%else%}
             ({{question.num_days_ago}} day ago)
             {%endif%}
-            {% comment %} {%bs_icon 'heart'%} {{Confession.num_likes}} likes  {% endcomment %}
           </span>
         </div>
       </div>

@@ -1,3 +1,4 @@
+from urllib.robotparser import RequestRate
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Question, Post, Like, Confession
 from django.core.paginator import Paginator
@@ -13,6 +14,9 @@ def checkOwnershipConfession(user, confession):
 
 def checkOwnershipQuestion(user, question):
     return question.owner == user
+
+def checkOwnershipComment(user, comment):
+    return comment.owner == user
 
 '''
 Generic/Static views
@@ -72,8 +76,6 @@ def deletequestion(request, q_id):
         question.delete()
 
     return redirect("ConfessionsApp:questions") 
-
-
 
 def editquestion(request, q_id):
 
@@ -148,20 +150,6 @@ def confessions(request):
         }
         return redirect('ConfessionsApp:confessions')
 
-# @login_required
-# def likeconfession(request, c_id):
-
-#     confession = get_object_or_404(Confession, id=c_id)
-#     if not checkOwnershipConfession(request.user, confession):
-#         return redirect('ConfessionsApp:confessions')
-#     if confession.like_set.filter(owner=request.user, confession=confession).exists():
-#         user_like = Like.objects.filter(owner=request.user, confession=confession)[0]
-#         confession.like_set.remove(user_like)
-#     else:
-#         Like.objects.create(owner=request.user, confession=confession)
-    
-#     return redirect('ConfessionsApp:confessions')
-
 @login_required
 def deleteconfession(request, c_id):
     confession = get_object_or_404(Confession, id=c_id)
@@ -189,6 +177,38 @@ def editconfession(request, c_id):
         confession.edited = True
         confession.save()
         return redirect('ConfessionsApp:confessions')     
+
+
+'''
+Comment views
+'''
+
+@login_required
+def deletecomment(request, q_id, cm_id):
+    comment = get_object_or_404(Post, id=cm_id)
+    if not checkOwnershipComment(request.user, comment):
+        return redirect('ConfessionsApp:question', q_id=q_id)
+    
+    if comment.owner == request.user:
+        comment.delete()
+    return redirect('ConfessionsApp:question', q_id=q_id)
+
+@login_required
+def editcomment(request, q_id, cm_id):
+    comment = get_object_or_404(Post, id=cm_id)
+    if not checkOwnershipComment(request.user, comment):
+        return redirect("ConfessionsApp:question", q_id=q_id)
+    if request.method != "POST":
+        context = {
+            "comment":comment,
+        }
+        return render(request,"ConfessionsApp/editCommentForm.html", context=context)
+    else:
+        comment.post_text = request.POST["commentText"]
+        comment.edited = True
+        comment.save()
+
+        return redirect('ConfessionsApp:question', q_id=q_id)
 
 
 '''

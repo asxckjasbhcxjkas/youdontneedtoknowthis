@@ -53,6 +53,9 @@ class Post(models.Model):
     post_text = models.CharField(max_length=255)
     date = models.DateTimeField(auto_now=True)
 
+    edited = models.BooleanField(default=False)
+    edited_date = models.DateTimeField(auto_now=True)
+
     def __str__(self):
         text_len = len(self.post_text)
         if text_len > 20:
