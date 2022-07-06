@@ -24,9 +24,9 @@ import os
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = not False
 
-ALLOWED_HOSTS = ['localhost','umd-confessions.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost','umd-confessions.herokuapp.com']
 
 
 # Application definition
