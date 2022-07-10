@@ -32,7 +32,6 @@ def secure(request):
 def cas_logout(request):
     request.session.clear()
     return redirect('ConfessionsApp:index')
-	# return redirect(client.get_logout_cas_url())
 
 def LogIn(request):
     return render(request, "Users/login.html")

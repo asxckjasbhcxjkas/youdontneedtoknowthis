@@ -37,19 +37,12 @@
         {%block custom_js%} {%endblock custom_js%}
     </head>
     <body class="d-flex flex-column min-vh-100 bg-light">
-    {% comment %} <body class="d-flex flex-column min-vh-100"> {% endcomment %}
         {%include 'ConfessionsApp/nav.html'%}
-        
         <main>
             <div class="">
-                
                 {%block content%}
-                
                 {%endblock content%}
             </div>
         </main>
-
-        {% comment %} {%include 'ConfessionsApp/footer.html'%} {% endcomment %}
-        
     </body>
 </html>

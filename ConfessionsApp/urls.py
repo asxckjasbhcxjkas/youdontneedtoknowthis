@@ -5,9 +5,6 @@ app_name = "ConfessionsApp"
 urlpatterns = [
 
     path("", views.index, name="index"),
-    path("base/", views.base, name="base"),
-    path("privacy-policy/", views.privacy, name="privacy"),
-    path("about/", views.about, name="about"),
 
     path("questions", views.questions, name="questions"),
     path("question/<int:q_id>/", views.question, name="question"),
@@ -17,7 +14,6 @@ urlpatterns = [
     path("confessions/", views.confessions, name="confessions"),
     path("deleteconfession/<int:c_id>", views.deleteconfession, name="deleteconfession"),
     path("editconfessions/<int:c_id>", views.editconfession, name="editconfession"),
-    # path("likeconfession/<int:c_id>", views.likeconfession, name="likeconfession"),
 
     path("deletecomment/<int:q_id>/<int:cm_id>", views.deletecomment, name="deletecomment"),
     path("editcomment/<int:q_id>/<int:cm_id>/", views.editcomment, name="editcomment"),

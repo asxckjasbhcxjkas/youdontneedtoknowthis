@@ -8,9 +8,7 @@ function displayToast(event){
 window.onload = function(){
     const loginCard = document.getElementById("loginCard")
     console.log(loginCard)
-    // loginCard.onmousemove = function(event) {
-        displayToast(event);
-    // }
+    displayToast(event);
 }
 
 

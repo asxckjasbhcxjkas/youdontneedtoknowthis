@@ -13,11 +13,11 @@
 
 
 <div class="container text-center">
-  <h1>{{Question.question_text}}</h1>
-  <p>{{Question.body}}</p>
+  <h1>{{question.question_text}}</h1>
+  <p>{{question.body}}</p>
   {%if request.user == Question.owner%}
-  <a class="btn btn-md btn-success" href="{%url 'ConfessionsApp:editquestion' Question.id%}">Edit Question</a>
-  <a class="btn btn-md btn-success" href="{%url 'ConfessionsApp:deletequestion' Question.id %}">Delete Question</a>
+  <a class="btn btn-md btn-success" href="{%url 'ConfessionsApp:editquestion' question.id%}">Edit Question</a>
+  <a class="btn btn-md btn-success" href="{%url 'ConfessionsApp:deletequestion' question.id %}">Delete Question</a>
   {%endif%}
 </div>
 
@@ -35,7 +35,7 @@
 
 
   <div class="list-group">
-    {% for post in Question.posts %}
+    {% for post in question.posts %}
     <span class="list-group-item list-group-item-action">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1">{{post.post_text}}</h5>
@@ -48,8 +48,8 @@
         {%endif%}
       </small>
       {%if request.user == post.owner%}
-        <a href="{%url 'ConfessionsApp:deletecomment' Question.id post.id%}" class="btn btn-outline-danger btn-sm">Delete</a>	
-        <a href="{%url 'ConfessionsApp:editcomment' Question.id post.id%}" class="btn btn-outline-success btn-sm">Edit</a>	
+        <a href="{%url 'ConfessionsApp:deletecomment' question.id post.id%}" class="btn btn-outline-danger btn-sm">Delete</a>	
+        <a href="{%url 'ConfessionsApp:editcomment' question.id post.id%}" class="btn btn-outline-success btn-sm">Edit</a>	
       {%endif%}
     </span>
     {% endfor %}

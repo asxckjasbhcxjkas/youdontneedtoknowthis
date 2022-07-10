@@ -33,26 +33,23 @@
   <a href="?page={{page_obj.number}}&SortBy=Oldest">Oldest</a>
   
   <div class="list-group">
-    {%for Question in page_obj%}
-    <a href="{%url 'ConfessionsApp:question' Question.id%}" class="list-group-item list-group-item-action">
+    {%for question in page_obj%}
+    <a href="{%url 'ConfessionsApp:question' question.id%}" class="list-group-item list-group-item-action">
       <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1 text-black" style="text-decoration:none">{{Question.question_text}}</h5>
-        <small>{{Question.num_days_ago}} days ago</small>
+        <h5 class="mb-1 text-black" style="text-decoration:none">{{question.question_text}}</h5>
+        <small>{{question.num_days_ago}} days ago</small>
       </div>
       <div>
-        <p>{{Question.body}}</p>
+        <p>{{question.body}}</p>
       </div>
     </a>
     <div class="fluid-container mb-3">
       <span class="list-group-item bg-light">
-      <small class="">{{Question.date}}</small> 
-      {%if Question.owner == request.user%}
-        <a href="{%url 'ConfessionsApp:deletequestion' Question.id%}" class="btn btn-danger"  title="Delete Question">
+      <small class="">{{question.date}}</small> 
+      {%if question.owner == request.user%}
+        <a href="{%url 'ConfessionsApp:deletequestion' question.id%}" class="btn btn-danger"  title="Delete Question">
           Delete {%bs_icon 'trash' color='white'%}
         </a>
-        {% comment %} <a href="{%url 'ConfessionsApp:editquestion' Question.id%}" class="btn btn-success"  title="Delete Confession">
-          Edit {%bs_icon 'pencil-square' color='white'%}
-        </a> {% endcomment %}
       {%endif%}
     </span>
     </div>

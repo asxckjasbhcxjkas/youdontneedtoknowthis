@@ -1,9 +1,7 @@
-from urllib.robotparser import RequestRate
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Question, Post, Like, Confession
+from .models import Question, Post,  Confession
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
-from django.utils import timezone
 
 '''
 Helper functions
@@ -60,9 +58,9 @@ def questions(request):
         question = Question.objects.create(question_text=request.POST["QuestionInput"], 
                                             body=request.POST["QuestionBodyInput"], 
                                             owner=request.user)
-        Questions = Question.objects.all()
+        questions = Question.objects.all()
         context = {
-            "Questions": Questions,
+            "questions": questions,
         }
         return redirect('ConfessionsApp:questions')
 
@@ -101,10 +99,10 @@ def editquestion(request, q_id):
 def question(request, q_id):
     if request.method != "POST":
         question = Question.objects.get(id=q_id)
-        Posts = Post.objects.filter(question=question)
+        posts = Post.objects.filter(question=question)
         context = {
-            "Question": question,
-            "Posts": Posts,
+            "question": question,
+            "posts": posts,
         }
         return render(request, "ConfessionsApp/question.html", context)
     else:
@@ -144,9 +142,9 @@ def confessions(request):
 
     else:
         confession = Confession.objects.create(body=request.POST["ConfessionInput"], owner=request.user)
-        Confessions = Confession.objects.all().order_by('-date')
+        confessions = Confession.objects.all().order_by('-date')
         context = {
-            "Confessions": Confessions,
+            "confessions": confessions,
         }
         return redirect('ConfessionsApp:confessions')
 
@@ -226,17 +224,17 @@ def userConfessions(request):
 @login_required
 def userQuestions(request):
     user = request.user
-    Questions = Question.objects.filter(owner=user).order_by('-date')
+    questions = Question.objects.filter(owner=user).order_by('-date')
     context = {
-        'questions' : Questions,
+        'questions' : questions,
     }
     return render(request, 'ConfessionsApp/userQuestions.html', context=context)
 
 @login_required
 def userComments(request):
     user = request.user
-    Comments = Post.objects.filter(owner=user)
+    comments = Post.objects.filter(owner=user)
     context = {
-        'comments' : Comments,
+        'comments' : comments,
     }
     return render(request, 'ConfessionsApp/userComments.html', context=context)
