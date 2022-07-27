@@ -1,6 +1,6 @@
 # UMDConfessions [web app](https://umdconfessions.herokuapp.com)
 
-![Project Image](https://raw.githubusercontent.com/EdwardX29/umdconfessions/main/.github/images/projectImage.png)
+![Project Image](https://raw.githubusercontent.com/EdwardX29/umd-confessions/main/.github/images/projectImage.png)
 
 ---
 
