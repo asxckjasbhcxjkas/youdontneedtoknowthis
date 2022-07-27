@@ -1,4 +1,4 @@
-# UMDConfessions [web app](https://umdconfessions.herokuapp.com)
+# UMDConfessions [web app](https://umd-confessions.herokuapp.com)
 
 ![Project Image](https://raw.githubusercontent.com/EdwardX29/umd-confessions/main/.github/images/projectImage.png)
 
