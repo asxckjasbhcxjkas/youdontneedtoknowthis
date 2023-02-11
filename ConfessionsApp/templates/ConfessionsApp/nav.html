@@ -3,11 +3,11 @@
 
 <nav class="navbar navbar-expand-lg bg-white">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{%url 'ConfessionsApp:index'%}">Confessions App</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="{%url 'ConfessionsApp:index'%}">Anon</a>
+    {% comment %} <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse" id="navbarSupportedContent">
+    </button> {% endcomment %}
+    {% comment %} <div class="navbar-collapse collapse" id="navbarSupportedContent">
       <ul class="d-flex navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{%url 'ConfessionsApp:confessions'%}">Confessions</a>
@@ -15,17 +15,17 @@
         <li class="nav-item">
           <a class="nav-link" href="{%url 'ConfessionsApp:questions'%}">Questions</a>
         </li>
-      </ul>
+      </ul>  {% endcomment %}
       <ul class="navbar-nav d-flex justify-content-between">
         {% if user.is_authenticated %}
-        <li class="nav-item">
+        {% comment %} <li class="nav-item">
           <a class="nav-link" href="{%url 'ConfessionsApp:myconfessions'%}">My Confessions</a>
+        </li> {% endcomment %}
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'ConfessionsApp:myquestions'%}">My Posts</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{%url 'ConfessionsApp:myquestions'%}">My Questions</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{%url 'ConfessionsApp:mycomments'%}">My Comments</a>
+          <a class="nav-link" href="{%url 'ConfessionsApp:mycomments'%}">My Discussions</a>
         </li>
         <li class="nav-item">
           <a class="nav-link btn btn-primary text-white" href="{%url 'Users:logout'%}">Logout</a>

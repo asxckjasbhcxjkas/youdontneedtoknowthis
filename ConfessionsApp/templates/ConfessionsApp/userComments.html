@@ -1,6 +1,6 @@
 {%extends 'ConfessionsApp/base.html'%}
 {%block content%}
-  <h1 class="text-center">My Comments</h1>
+  <h1 class="text-center">My Discussions</h1>
   <div class="container">
   {%for comment in comments%}
   <div class="card mt-2 mb-2">
@@ -20,6 +20,6 @@
     </div>
   </div>
   {%empty%}
-  <p>You have posted no comments</p>
+  <p>You haven't started any discussions yet, start now.</p>
   {%endfor%}
 {%endblock content%}

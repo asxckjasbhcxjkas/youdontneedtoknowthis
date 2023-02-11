@@ -3,7 +3,7 @@
 
 {%block content%}
 
-<h1 class="text-center">My Questions</h1>
+<h1 class="text-center">My Posts</h1>
 <div class="container mt-4">
   {%for question in questions%}
     <div class="card mt-2 mb-2">
@@ -27,6 +27,6 @@
         </div>
       </div>
   {%empty%}
-  <p>You have posted no questions</p>
+  <p>You haven't made any post yet, post now.</p>
   {%endfor%}
 {%endblock content%}

@@ -12,26 +12,27 @@
     {%csrf_token%}
     {%if user.is_authenticated%}
     <input class="form-control mb-2" type="text"   
-      name="QuestionInput" placeholder="Enter a question title!"
+      name="QuestionInput" placeholder="Topic"
       />
       <textarea class="form-control mb-2" type="text"   
-      name="QuestionBodyInput" placeholder="Type your question here!"
+      name="QuestionBodyInput" placeholder="Write here"
       /></textarea>
-    <input id="submitBtn" class="btn btn-outline-success mt-2 mb-4" type="submit" value="Ask!" />
+      
+    <input id="submitBtn" class="btn btn-outline-success mt-2 mb-4" type="submit" value="Post Anonymously" />
     {%else%}
     <input class="form-control mb-2" type="text"   
-      name="QuestionInput" placeholder="Login to ask a Question!"
+      name="QuestionInput" placeholder="Sign up to Post"
       disabled
     />
     <textarea class="form-control mb-2" type="text"   
-      name="QuestionBodyInput" placeholder="Login to ask a Question!" disabled
+      name="QuestionBodyInput" placeholder="Sign up to Post" disabled
       ></textarea>
-    <input id="submitBtn" class="btn btn-outline-success mt-2 mb-4" type="submit" value="Ask!" disabled/>
+    <input id="submitBtn" class="btn btn-outline-success mt-2 mb-4" type="submit" value="Post Anonymously" disabled/>
     {%endif%}
   </form>
   <a href="?page={{page_obj.number}}&SortBy=Newest">Newest</a>
   <a href="?page={{page_obj.number}}&SortBy=Oldest">Oldest</a>
-  
+
   <div class="list-group">
     {%for question in page_obj%}
     <a href="{%url 'ConfessionsApp:question' question.id%}" class="list-group-item list-group-item-action">

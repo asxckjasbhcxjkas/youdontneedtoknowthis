@@ -8,7 +8,7 @@
 {%endblock custom_js%}
 {%block content%}
 <div class="my-3">
-  <a href="{%url 'ConfessionsApp:questions'%}" class="btn btn-outline-primary">Back to questions</a>
+  <a href="{%url 'ConfessionsApp:questions'%}" class="btn btn-outline-primary">Back to Timeline</a>
 </div>
 
 
@@ -16,8 +16,8 @@
   <h1>{{question.question_text}}</h1>
   <p>{{question.body}}</p>
   {%if request.user == Question.owner%}
-  <a class="btn btn-md btn-success" href="{%url 'ConfessionsApp:editquestion' question.id%}">Edit Question</a>
-  <a class="btn btn-md btn-success" href="{%url 'ConfessionsApp:deletequestion' question.id %}">Delete Question</a>
+  <a class="btn btn-md btn-success" href="{%url 'ConfessionsApp:editquestion' question.id%}">Edit Post</a>
+  <a class="btn btn-md btn-success" href="{%url 'ConfessionsApp:deletequestion' question.id %}">Delete Post</a>
   {%endif%}
 </div>
 
@@ -25,10 +25,10 @@
   <form method="POST" class="text-center my-4">
     {%csrf_token%}
     {%if user.is_authenticated%}
-    <textarea name="post-input" cols="10" rows="10" class="form-control" placeholder="Add a comment..."></textarea>
+    <textarea name="post-input" cols="2" rows="2" class="form-control" placeholder="Start Discussing..."></textarea>
     <input type="submit" id="submitBtn" class="btn btn-outline-success mt-2">
     {%else%}
-    <textarea name="post-input" cols="10" rows="10" class="form-control" placeholder="Login or Sign up!" disabled></textarea>
+    <textarea name="post-input" cols="2" rows="2" class="form-control" placeholder="Start interaction with this post, sign up now." disabled></textarea>
     <input type="submit" id="submitBtn" class="btn btn-outline-success mt-2" disabled>
     {%endif%}
   </form>

@@ -20,10 +20,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-import os 
-SECRET_KEY = os.environ['SECRET_KEY']
+# import os 
+# SECRET_KEY = os.environ['SECRET_KEY']
+
+# export SECRET_KEY = "somesecretevalue"
+
+with open('secret_key.txt') as f:
+    SECRET_KEY = f.read().strip()
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =  False
+DEBUG =  True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost','umd-confessions.herokuapp.com']
 
@@ -119,7 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 
 # TIME_ZONE = 'UTC'
-TIME_ZONE = 'America/New_York'
+TIME_ZONE =  'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -138,3 +144,4 @@ STATIC_FILES_DIRS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
