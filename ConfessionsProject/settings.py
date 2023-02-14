@@ -31,7 +31,7 @@ with open('secret_key.txt') as f:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =  True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost','umd-confessions.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost','umd-confessions.herokuapp.com','.vercel.app']
 
 
 # Application definition
@@ -145,3 +145,8 @@ STATIC_FILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+import os
+STATIC_URL = 'static/'
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
