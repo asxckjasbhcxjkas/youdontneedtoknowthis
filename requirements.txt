@@ -30,7 +30,7 @@ soupsieve==2.3.2.post1
 sqlparse==0.4.3
 termcolor==1.1.0
 tzdata==2022.7
-umd-python-cas==1.0.1
+
 urllib3==1.26.14
 
 wcwidth==0.1.9
