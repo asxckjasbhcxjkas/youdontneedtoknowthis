@@ -23,8 +23,5 @@
         "src": "/(.*)",
         "dest": "ConfessionsProject/wsgi.py"
       }
-    ],
-    "excludeFiles": [{"/myenv/(.*)"}
-
     ]
   }
