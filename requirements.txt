@@ -1,5 +1,5 @@
 ﻿asgiref==3.6.0
-awsebcli==3.20.3
+
 beautifulsoup4==4.11.1
 botocore==1.23.54
 cement==2.8.2
@@ -14,7 +14,7 @@ django-bootstrap-form==3.4
 django-bootstrap-icons==0.8.2
 django-bootstrap-v5==1.0.11
 django-crispy-forms==1.14.0
-EB==0.1.5
+
 filelock==3.9.0
 future==0.16.0
 idna==3.4
@@ -32,7 +32,7 @@ termcolor==1.1.0
 tzdata==2022.7
 umd-python-cas==1.0.1
 urllib3==1.26.14
-virtualenv==20.19.0
+
 wcwidth==0.1.9
 whitenoise==6.3.0
 xmltodict==0.13.0
