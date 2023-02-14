@@ -21,3 +21,5 @@ urlpatterns = [
     path("myquestions", views.userQuestions, name="myquestions"),
     path("mycomments", views.userComments, name="mycomments"),
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
