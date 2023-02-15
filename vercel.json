@@ -2,11 +2,10 @@
     
    
   "functions": {
-    "ConfessionsProject/wsgi.py"{
-      "@vercel/python"{
+   
    
       "excludeFiles": "staticfiles/**"
     }
   }
-}}
+
  
