@@ -4,8 +4,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse
 from django.contrib.auth.models import User
 
-from umd_python_cas import UMDCASClient
-
 # client = UMDCASClient(host_name="http://127.0.0.1:8000/", post_auth_route="accounts/secure")
 client = UMDCASClient(host_name="https://umd-confessions.herokuapp.com/", post_auth_route="accounts/secure")
 
