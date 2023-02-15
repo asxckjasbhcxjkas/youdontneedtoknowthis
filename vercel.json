@@ -2,10 +2,10 @@
     
    
   "functions": {
-   
+   "ConfessionsProject/wsgi.py": {
    
       "excludeFiles": "staticfiles/**"
     }
   }
-
+}
  
