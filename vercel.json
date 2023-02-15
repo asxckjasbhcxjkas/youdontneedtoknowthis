@@ -2,7 +2,7 @@
     
    
   "functions": {
-   "UMD-CONFESSIONS/ConfessionsProject/wsgi.py": {
+   "pages/api/wsgi.py": {
    
       "excludeFiles": "staticfiles/**"
     }
