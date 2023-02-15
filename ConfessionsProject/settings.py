@@ -31,7 +31,7 @@ with open('secret_key.txt') as f:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =  True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost','umd-confessions.herokuapp.com','.vercel.app']
+ALLOWED_HOSTS = ['.now.sh','.vercel.app']
 
 
 # Application definition
