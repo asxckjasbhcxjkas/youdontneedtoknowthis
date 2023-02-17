@@ -94,18 +94,30 @@ WSGI_APPLICATION = 'ConfessionsProject.wsgi.application'
 # DATABASES['default'].update(db_from_env)
 
 
-import dj_database_url
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config()
+# import dj_database_url
+# DATABASES = {}
+# DATABASES['default'] = dj_database_url.config()
 
-if len(DATABASES['default']) == 0:
+# if len(DATABASES['default']) == 0:
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'vhmagngr',
+        'USER': 'vhmagngr',
+        'PASSWORD': 'gvgGXddbLbo3AEMTqKXPobf33UOFoRNs',
+        'HOST': 'satao.db.elephantsql.com'
+
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
