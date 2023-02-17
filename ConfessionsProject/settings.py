@@ -110,11 +110,11 @@ WSGI_APPLICATION = 'ConfessionsProject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'vhmagngr',
         'USER': 'vhmagngr',
         'PASSWORD': 'gvgGXddbLbo3AEMTqKXPobf33UOFoRNs',
-        'HOST': 'satao.db.elephantsql.com'
+        'HOST': ''
 
     }
 }
