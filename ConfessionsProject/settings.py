@@ -29,9 +29,9 @@ with open('secret_key.txt') as f:
     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =  False
+DEBUG =  True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 # '.now.sh','.vercel.app'
 
 # Application definition
