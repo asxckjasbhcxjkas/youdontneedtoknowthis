@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.dbsqlite3',
+    'django.contrib.sqlite3',
     'ConfessionsApp',
     'Users',
     'bootstrap5',
