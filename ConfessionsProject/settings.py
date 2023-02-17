@@ -29,7 +29,7 @@ with open('secret_key.txt') as f:
     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['.now.sh','.vercel.app']
 # '.now.sh','.vercel.app'
