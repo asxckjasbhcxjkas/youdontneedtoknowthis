@@ -45,3 +45,4 @@ db==0.1.1
 db-sqlite3==0.0.1
 ffmpeg-python==0.2.0
 django-import-export==3.0.2
+django-dotenv==1.4.2;
