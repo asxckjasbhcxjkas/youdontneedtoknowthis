@@ -95,7 +95,7 @@ WSGI_APPLICATION = 'ConfessionsProject.wsgi.application'
 # DATABASES['default'].update(db_from_env)
 
 
-# import dj_database_url
+import dj_database_url
 # DATABASES = {}
 # DATABASES['default'] = dj_database_url.config()
 
@@ -108,15 +108,14 @@ WSGI_APPLICATION = 'ConfessionsProject.wsgi.application'
 # }
 
 
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3'
-        
-
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
 }
+DATABASES['default'] = dj_database_url.config()
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
