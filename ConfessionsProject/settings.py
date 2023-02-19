@@ -106,7 +106,6 @@ import dj_database_url
 #     }
 # }
 
-DATABASES['default'] = dj_database_url.config()
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -114,6 +113,7 @@ DATABASES = {
     }
 }
 
+DATABASES['default'] = dj_database_url.config()
 
 
 # Password validation
