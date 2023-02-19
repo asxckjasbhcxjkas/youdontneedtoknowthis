@@ -43,4 +43,4 @@ psycopg2-binary==2.9.5
 antiorm==1.2.1 
 db==0.1.1 
 db-sqlite3==0.0.1
-pysqlite==2.8.3
+sqlite-devel==3.40.1
